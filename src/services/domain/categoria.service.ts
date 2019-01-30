@@ -13,7 +13,7 @@ export class CategoriaService {
 
     }
 
-    findAll() : Observable<CategoriaDTO[]>{
+    findAll() : Observable<CategoriaDTO[]> {
         return this.http.get<CategoriaDTO[]>(this.baseUrl);
     }
 }
