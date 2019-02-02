@@ -36,4 +36,17 @@ export class HomePage {
     });
   }
 
+  signup(){
+    this.navCtrl.push('SignupPage');
+  }
+
+  ionViewDidEnter(){
+    this.auth.refreshToken().subscribe(response =>{
+      this.auth.successfullLogin(response.headers.get('Authorization'));
+      this.navCtrl.setRoot('CategoriasPage');
+    }, error =>{
+
+    });
+  }
+
 }

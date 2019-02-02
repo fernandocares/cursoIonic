@@ -11,7 +11,7 @@ export class AuthService{
 
     jwtHelper: JwtHelper = new JwtHelper();
 
-    baseUrl: string = `${API_CONFIG.baseUrl}/login`;
+    baseUrl: string = API_CONFIG.baseUrl;
 
     constructor(public http: HttpClient, public storage: StorageService){
 
@@ -19,7 +19,7 @@ export class AuthService{
 
     authenticate(creds: CredenciaisDTO){
 
-        return this.http.post(this.baseUrl, creds, {
+        return this.http.post(this.baseUrl + '/login', creds, {
             observe: 'response',
             responseType: 'text'
         });
@@ -37,5 +37,12 @@ export class AuthService{
 
     logout() {
         this.storage.setLocalUser(null);
+    }
+    
+    refreshToken(){
+        return this.http.post(this.baseUrl + '/auth/refresh_token', {}, {
+            observe: 'response',
+            responseType: 'text'
+        });
     }
 }
