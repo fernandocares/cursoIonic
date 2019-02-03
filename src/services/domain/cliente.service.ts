@@ -15,6 +15,10 @@ export class ClienteService {
         
     }
 
+    findById(id: string) {
+        return this.http.get(this.baseUrl + `/${id}`);
+    }
+
     findByEmail(email: string) {
         return this.http.get(this.baseUrl + `/email?value=${email}`);
     }
